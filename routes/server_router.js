@@ -4,7 +4,7 @@ const router = express.Router();
 
 const ok = {mensagem: "OK"};
 
-router.get(serverUrl.STATUS, (_, response, _) => {
+router.get(serverUrl.STATUS, (_, response, __) => {
     response.status(200).send(ok);
 });
 
