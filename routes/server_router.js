@@ -5,7 +5,7 @@ const router = express.Router();
 const ok = {status: 'OK'};
 
 router.get(serverUrl.PING, (_, response, __) => {
-    response.status(200).send({message: 'PONG'});
+    response.status(200).send({message: 'pong'});
 });
 
 router.get('/', (_, response, __) => {
