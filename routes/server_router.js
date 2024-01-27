@@ -2,10 +2,10 @@ const express = require('express');
 const serverUrl = require('./utils/server_url');
 const router = express.Router();
 
-const ok = {mensagem: "OK"};
+const ok = {status: 'OK'};
 
 router.get(serverUrl.PING, (_, response, __) => {
-    response.status(200).send('pong');
+    response.status(200).send({message: 'PONG'});
 });
 
 router.get('/', (_, response, __) => {
