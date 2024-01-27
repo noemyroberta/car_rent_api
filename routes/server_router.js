@@ -4,8 +4,8 @@ const router = express.Router();
 
 const ok = {mensagem: "OK"};
 
-router.get('/status', (_, response, __) => {
-    response.status(200).send(ok);
+router.get(serverUrl.PING, (_, response, __) => {
+    response.status(200).send('pong');
 });
 
 router.get('/', (_, response, __) => {

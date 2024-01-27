@@ -1,6 +1,6 @@
 const serverUrl = {
     SERVER : '/server',
-    STATUS : '/status',
+    PING : '/ping',
 };
 
 module.exports = serverUrl;
