@@ -18,6 +18,12 @@ class CarRepository {
         car.available = false;
         await car.save();
     }
+
+    async handOver(id) {
+        const car = this.getById(id);
+        car.available = true;
+        await car.save();
+    }
 }
 
 module.exports = CarRepository;
