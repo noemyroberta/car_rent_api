@@ -15,11 +15,6 @@ try {
     console.error('Unable to connect to the database:', error);
 }
 
-CarRepository.getAll()
-    .then((cars) => {
-        console.log('All Cars:', cars);
-    });
-
 server.listen(PORT, HOST, () => {
     console.log(`Server running at http://${HOST}:${PORT}/`);
 });
