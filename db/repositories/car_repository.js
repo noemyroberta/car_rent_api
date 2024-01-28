@@ -1,22 +1,22 @@
 const Car = require('../models/car');
 
 class CarRepository {
-    insert(car) {
-        Car.create(car);
+    async insert(car) {
+        await Car.create(car);
     }
 
-    getAll() {
-        return Car.findAll();
+    async getAll() {
+        return await Car.findAll();
     }
 
-    getById(id) {
-        return Car.findByPk(id);
+    async getById(id) {
+        return await Car.findByPk(id);
     }
 
-    rent(id) {
+    async rent(id) {
         const car = this.getById(id);
         car.available = false;
-        car.save();
+        await car.save();
     }
 }
 
