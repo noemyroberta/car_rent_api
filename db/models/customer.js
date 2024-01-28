@@ -34,5 +34,6 @@ const Customer = sequelize.define('Customer', {
         defaultValue: Date.now(),
     }
 });
-await Customer.sync();
+
+Customer.sync();
 module.exports = Customer;

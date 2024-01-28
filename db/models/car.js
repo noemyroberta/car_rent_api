@@ -30,5 +30,6 @@ const Car = sequelize.define('Car', {
         defaultValue: true,
     },
 });
-await Car.sync();
+
+Car.sync();
 module.exports = Car;
