@@ -1,4 +1,4 @@
-const { DataTypes } = require('sequelize');
+const { Sequelize, DataTypes } = require('sequelize');
 const sequelize = require('../db_configuration');
 
 const Car = sequelize.define('Car', {
@@ -30,5 +30,5 @@ const Car = sequelize.define('Car', {
         defaultValue: true,
     },
 });
-
+await Car.sync();
 module.exports = Car;
