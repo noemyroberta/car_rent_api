@@ -33,7 +33,7 @@ const Customer = sequelize.define('Customer', {
         type: DataTypes.DATE,
         defaultValue: Date.now(),
     },
-    tableName: "tb_customer",
+    tableName: 'Customer',
 
 });
 

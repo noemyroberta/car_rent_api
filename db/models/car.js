@@ -29,7 +29,7 @@ const Car = sequelize.define('Car', {
         allowNull: false,
         defaultValue: true,
     },
-    tableName: "tb_car",
+    tableName: 'Car',
 });
 
 Car.sync();
