@@ -9,12 +9,6 @@ const HOST = 'localhost';
 
 try {
     db.authenticate();
-    CarRepository.insert({
-        brand: 'moto',
-        model: 'moto',
-        year: 2021,
-        rentalRate: 53,
-    });
     console.log('Connection has been established successfully.');
 
 } catch (error) {
