@@ -24,8 +24,8 @@ const Rental = sequelize.define('Rental', {
         allowNull: false,
         defaultValue: 0.0,
     },
-    tableName: 'Rental',
-});
+
+}, { tableName: 'tb_rental' });
 
 Rental.belongsTo(Car);
 Rental.belongsTo(Customer);

@@ -33,9 +33,7 @@ const Customer = sequelize.define('Customer', {
         type: DataTypes.DATE,
         defaultValue: Date.now(),
     },
-    tableName: 'Customer',
-
-});
+}, { tableName: 'tb_customer' });
 
 Customer.sync();
 module.exports = Customer;
