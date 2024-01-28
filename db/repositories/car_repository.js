@@ -1,16 +1,22 @@
 const Car = require('../models/car');
 
 class CarRepository {
-    static insert(car) {
-        console.log(`Inserting new car ${car}`);
+    insert(car) {
         Car.create(car);
     }
-    static getAll() {
-        console.log(Car.findAll());
+
+    getAll() {
+        return Car.findAll();
     }
 
-    static getById(id) {
+    getById(id) {
         return Car.findByPk(id);
+    }
+
+    rent(id) {
+        const car = this.getById(id);
+        car.available = false;
+        car.save();
     }
 }
 
