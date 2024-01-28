@@ -28,6 +28,10 @@ const Customer = sequelize.define('Customer', {
         type: DataTypes.BOOLEAN,
         allowNull: false,
         defaultValue: false,
+    },
+    registerDate: {
+        type: DataTypes.DATE,
+        defaultValue: Date.now(),
     }
 });
 
