@@ -1,7 +1,7 @@
 const express = require('express');
 const carUrl = require('./utils/car_url');
 const router = express.Router();
-const CarRepository = require('../db/repositories/customer_repository');
+const CarRepository = require('../db/repositories/car_repository');
 
 const repository = new CarRepository();
 
