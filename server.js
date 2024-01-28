@@ -16,6 +16,7 @@ try {
         rentalRate: 53,
     });
     console.log('Connection has been established successfully.');
+    CarRepository.getAll();
 } catch (error) {
     console.error('Unable to connect to the database:', error);
 }

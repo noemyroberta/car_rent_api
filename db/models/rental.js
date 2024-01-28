@@ -23,7 +23,8 @@ const Rental = sequelize.define('Rental', {
         type: DataTypes.FLOAT,
         allowNull: false,
         defaultValue: 0.0,
-    }
+    },
+    tableName: "tb_rental",
 });
 
 Rental.belongsTo(Car);

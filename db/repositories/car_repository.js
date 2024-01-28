@@ -6,7 +6,7 @@ class CarRepository {
         Car.create(car);
     }
     static getAll() {
-        return Car.findAll();
+        console.log(Car.findAll());
     }
 
     static getById(id) {
