@@ -16,7 +16,7 @@ exports.insert = async (req, res, next) => {
                 year,
                 rentalRate,
             });
-            res.json(newCar);
+            res.status(201).json({ car: newCar });
         } catch (error) {
             return next(error);
         }
