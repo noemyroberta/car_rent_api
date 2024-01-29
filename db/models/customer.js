@@ -1,4 +1,3 @@
-const { v4: uuidv4 } = require('uuid');
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/database');
 
@@ -7,7 +6,6 @@ const Customer = sequelize.define('Customer', {
         type: DataTypes.STRING,
         primaryKey: true,
         allowNull: false,
-        defaultValue: uuidv4(),
     },
     firstName: {
         type: DataTypes.STRING,

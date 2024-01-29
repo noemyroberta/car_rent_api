@@ -1,3 +1,4 @@
+const { v4: uuidv4 } = require('uuid');
 const express = require('express');
 const carUrl = require('./utils/car_url');
 const router = express.Router();
