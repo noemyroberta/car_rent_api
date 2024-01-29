@@ -6,8 +6,12 @@ const CarRepository = require('../db/repositories/car_repository');
 const repository = new CarRepository();
 
 router.get(carUrl.GET_ALL, async (_, response, __) => {
-    const cars = await repository.getAll();
-    response.status(200).json({cars: cars});
+    try {
+        const cars = await repository.getAll();
+        response.status(200).json({ cars: cars });
+    } catch {
+        response.status(500).send({ error: 'Server disconnect' });
+    }
 });
 
 module.exports = router;
