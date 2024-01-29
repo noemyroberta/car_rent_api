@@ -3,7 +3,7 @@ const { v4: uuidv4 } = require('uuid');
 const { body, validationResult } = require('express-validator')
 
 exports.insert = async (req, res, next) => {
-    verifyError(req);
+    verifyError(req, res);
 
     const { brand, model, year, rentalRate } = req.body;
     const uuid = uuidv4();
@@ -23,7 +23,7 @@ exports.insert = async (req, res, next) => {
     }
 }
 
-function verifyError(req) {
+function verifyError(req, res) {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
         res.status(422).json({ errors: errors.array() });
