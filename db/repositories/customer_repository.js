@@ -9,8 +9,8 @@ class CustomerRepository {
         return await Customer.findAll();
     }
 
-    async getById(id) {
-        return await Customer.findByPk(id);
+    async getByUuid(uuid) {
+        return await Customer.findByPk(uuid);
     }
 }
 
