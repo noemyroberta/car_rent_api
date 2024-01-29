@@ -1,6 +1,6 @@
 const Car = require('../models/car')
 const { v4: uuidv4 } = require('uuid');
-const { body, validationResult } = require('express-validator')
+const { validationResult } = require('express-validator');
 
 exports.insert = async (req, res, next) => {
     verifyError(req, res);
@@ -28,18 +28,5 @@ function verifyError(req, res) {
     if (!errors.isEmpty()) {
         res.status(422).json({ errors: errors.array() });
         return;
-    }
-}
-
-exports.validate = (method) => {
-    switch (method) {
-        case 'insertCar': {
-            return [
-                body('brand', 'brand is required').exists(),
-                body('brand', 'brand is required').exists(),
-                body('year', 'year is required').exists().isInt(),
-                body('rentalRate', 'rental rate is required').exists().isFloat(),
-            ]
-        }
     }
 }
