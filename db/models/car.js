@@ -23,7 +23,7 @@ const Car = sequelize.define('Car', {
         type: DataTypes.FLOAT,
         allowNull: false,
     },
-    available: {
+    isAvailable: {
         type: DataTypes.BOOLEAN,
         allowNull: false,
         defaultValue: true,
