@@ -7,7 +7,7 @@ const repository = new CarRepository();
 
 router.get(carUrl.GET_ALL, async (_, response, __) => {
     const cars = await repository.getAll();
-    response.status(200).json(cars);
+    response.status(200).json({cars: cars});
 });
 
 module.exports = router;
