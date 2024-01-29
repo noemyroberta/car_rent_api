@@ -9,18 +9,18 @@ class CarRepository {
         return await Car.findAll();
     }
 
-    async getById(id) {
-        return await Car.findByPk(id);
+    async getByUuid(uuid) {
+        return await Car.findByPk(uuid);
     }
 
-    async rent(id) {
-        const car = this.getById(id);
+    async rent(uuid) {
+        const car = this.getByUuid(uuid);
         car.available = false;
         await car.save();
     }
 
-    async handOver(id) {
-        const car = this.getById(id);
+    async handOver(uuid) {
+        const car = this.getByUuid(uuid);
         car.available = true;
         await car.save();
     }
