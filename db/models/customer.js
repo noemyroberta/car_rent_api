@@ -37,5 +37,5 @@ const Customer = sequelize.define('Customer', {
     },
 }, { tableName: 'tb_customer' });
 
-Customer.sync();
+Customer.sync({alter: true});
 module.exports = Customer;

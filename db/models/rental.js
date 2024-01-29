@@ -32,5 +32,5 @@ const Rental = sequelize.define('Rental', {
 Rental.belongsTo(Car);
 Rental.belongsTo(Customer);
 
-Rental.sync();
+Rental.sync({alter: true});
 module.exports = Rental;

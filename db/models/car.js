@@ -33,5 +33,5 @@ const Car = sequelize.define('Car', {
     },
 }, { tableName: 'tb_car' });
 
-Car.sync();
+Car.sync({alter: true});
 module.exports = Car;
