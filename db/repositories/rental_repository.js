@@ -9,8 +9,8 @@ class RentalRepository {
         return await Rental.findAll();
     }
 
-    async getById(id) {
-        return await Rental.findByPk(id);
+    async getByUuid(uuid) {
+        return await Rental.findByPk(uuid);
     }
 }
 
