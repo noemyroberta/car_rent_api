@@ -1,6 +1,6 @@
 const Car = require('../models/car')
 const { v4: uuidv4 } = require('uuid');
-const { body } = require('express-validator/check')
+const { body } = require('express-validator')
 
 exports.insert = async (req, res, next) => {
     verifyError(req);
