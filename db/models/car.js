@@ -1,12 +1,14 @@
-const { Sequelize, DataTypes } = require('sequelize');
+const { v4: uuidv4 } = require('uuid');
+const { DataTypes } = require('sequelize');
 const sequelize = require('../db_configuration');
 
 const Car = sequelize.define('Car', {
     id: {
-        type: Sequelize.INTEGER.UNSIGNED,
+        type: DataTypes.STRING,
         primaryKey: true,
         autoIncrement: true,
         allowNull: false,
+        defaultValue: uuidv4(),
     },
     brand: {
         type: DataTypes.STRING,

@@ -1,12 +1,14 @@
+const { v4: uuidv4 } = require('uuid');
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/database');
 
 const Customer = sequelize.define('Customer', {
     id: {
-        type: Sequelize.INTEGER.UNSIGNED,
+        type: DataTypes.STRING,
         primaryKey: true,
         autoIncrement: true,
         allowNull: false,
+        defaultValue: uuidv4(),
     },
     firstName: {
         type: DataTypes.STRING,
