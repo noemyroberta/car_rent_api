@@ -2,6 +2,8 @@ const Car = require('../models/car')
 const { v4: uuidv4 } = require('uuid');
 const { validationResult } = require('express-validator');
 
+const inserted = {message: "Car created successfully!"};
+
 exports.insert = async (req, res, next) => {
     verifyError(req, res);
 
@@ -14,9 +16,10 @@ exports.insert = async (req, res, next) => {
                 brand,
                 model,
                 year,
-                rentalRate,
+                rentalRate, 
             });
-            res.status(201).json({ car: newCar });
+            const jsonResponse = { inserted, car: newCar };
+            res.status(201).json(jsonResponse);
         } catch (error) {
             return next(error);
         }
