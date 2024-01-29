@@ -3,7 +3,7 @@ const { DataTypes } = require('sequelize');
 const sequelize = require('../db_configuration');
 
 const Car = sequelize.define('Car', {
-    id: {
+    uuid: {
         type: DataTypes.STRING,
         primaryKey: true,
         autoIncrement: true,

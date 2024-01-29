@@ -5,7 +5,7 @@ const Car = require('./Car');
 const Customer = require('./Customer');
 
 const Rental = sequelize.define('Rental', {
-    id: {
+    uuid: {
         type: DataTypes.STRING,
         primaryKey: true,
         autoIncrement: true,
