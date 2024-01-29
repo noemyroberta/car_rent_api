@@ -6,7 +6,6 @@ const Car = sequelize.define('Car', {
     uuid: {
         type: DataTypes.STRING,
         primaryKey: true,
-        autoIncrement: true,
         allowNull: false,
         defaultValue: uuidv4(),
     },

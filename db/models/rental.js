@@ -8,7 +8,6 @@ const Rental = sequelize.define('Rental', {
     uuid: {
         type: DataTypes.STRING,
         primaryKey: true,
-        autoIncrement: true,
         allowNull: false,
         defaultValue: uuidv4(),
     },
@@ -32,5 +31,5 @@ const Rental = sequelize.define('Rental', {
 Rental.belongsTo(Car);
 Rental.belongsTo(Customer);
 
-Rental.sync({alter: true});
+Rental.sync({ alter: true });
 module.exports = Rental;

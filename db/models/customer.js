@@ -6,7 +6,6 @@ const Customer = sequelize.define('Customer', {
     uuid: {
         type: DataTypes.STRING,
         primaryKey: true,
-        autoIncrement: true,
         allowNull: false,
         defaultValue: uuidv4(),
     },
