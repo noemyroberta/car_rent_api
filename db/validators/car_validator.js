@@ -9,5 +9,10 @@ exports.validate = (method) => {
                 body('rentalRate', 'rental rate is required').exists().if(body('year').exists()).isFloat(),
             ]
         }
+        case 'getCarByUuid': {
+            return [
+                body('uuid', 'uuid is required').exists().if(body('uuid').exists()).isString(),
+            ]
+        }
     }
 }
