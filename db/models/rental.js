@@ -1,7 +1,7 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../db_configuration');
-const Car = require('./Car');
-const Customer = require('./Customer');
+const Car = require('./car');
+const Customer = require('./customer');
 
 const Rental = sequelize.define('Rental', {
     uuid: {
