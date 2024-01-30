@@ -37,8 +37,8 @@ const Rental = sequelize.define('Rental', {
 
 }, { tableName: 'tb_rental' });
 
-Rental.belongsTo(Car);
-Rental.belongsTo(Customer);
+Rental.belongsTo(Car, { through: carUuid });
+Rental.belongsTo(Customer, { through: customerUuid });
 
 Rental.sync({ alter: true });
 module.exports = Rental;
