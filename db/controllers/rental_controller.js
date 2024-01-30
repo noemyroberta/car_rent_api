@@ -86,7 +86,7 @@ exports.getByUuid = async (req, res, next) => {
     }
 }
 
-exports.getByCustomerUuid = async (req, res, next) => {
+exports.getAllByCustomerUuid = async (req, res, next) => {
     verifyError(req, res);
 
     const customerUuid = req.params.uuid;
