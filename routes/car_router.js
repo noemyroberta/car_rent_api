@@ -22,4 +22,10 @@ router.post(
     CarController.insert,
 );
 
+router.get(
+    carUrl.GET_BY_ID,
+    CarValidator.validate('getCarByUuid'),
+    CarController.getByUuid,
+);
+
 module.exports = router;
