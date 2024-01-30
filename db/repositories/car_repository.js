@@ -2,7 +2,7 @@ const Car = require('../models/car');
 
 class CarRepository {
     async insert(car) {
-        await Car.create(car);
+        return await Car.create(car);
     }
 
     async getAll() {

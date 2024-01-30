@@ -2,7 +2,7 @@ const Customer = require('../models/customer');
 
 class CustomerRepository {
     async insert(customer) {
-        await Customer.create(customer);
+        return await Customer.create(customer);
     }
 
     async getAll() {
