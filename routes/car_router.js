@@ -17,7 +17,7 @@ router.post(
 );
 
 router.get(
-    carUrl.GET_BY_ID,
+    carUrl.GET_BY_UUID,
     CarValidator.validate('getCarByUuid'),
     CarController.getByUuid,
 );

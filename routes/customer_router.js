@@ -17,7 +17,7 @@ router.post(
 );
 
 router.get(
-    customerUrl.GET_BY_ID,
+    customerUrl.GET_BY_UUID,
     CustomerValidator.validate('getCustomerByUuid'),
     CustomerController.getByUuid,
 );
