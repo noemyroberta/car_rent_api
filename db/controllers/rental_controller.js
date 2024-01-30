@@ -89,10 +89,10 @@ exports.getByUuid = async (req, res, next) => {
 exports.getByCustomerUuid = async (req, res, next) => {
     verifyError(req, res);
 
-    const uuid = req.params.uuid;
-    if (uuid) {
+    const customerUuid = req.params.uuid;
+    if (customerUuid) {
         try {
-            const foundCustomer = await customerRepo.getByUuid(uuid);
+            const foundCustomer = await customerRepo.getByUuid(customerUuid);
 
             if (!foundCustomer) {
                 res.status(400).json({ error: 'Customer with the given uuid does not exist' });
@@ -102,7 +102,7 @@ exports.getByCustomerUuid = async (req, res, next) => {
                 return;
             }
 
-            const { count, foundRents } = await rentalRepo.getAllByCustomerUuid(uuid);
+            const { count, foundRents } = await rentalRepo.getAllByCustomerUuid(customerUuid);
             const jsonResponse = { message: gettedAll, rent: foundRents, count: count };
             res.status(200).json(jsonResponse);
         } catch (error) {
