@@ -12,6 +12,18 @@ class RentalRepository {
     async getByUuid(uuid) {
         return await Rental.findByPk(uuid);
     }
+
+    async getAllByCustomerUuid(customerUuid) {
+        const { count, rows } = await Rental.findAndCountAll({
+            where: {
+                customerUuid: {
+                    [Op.like]: `${customerUuid}`
+                }
+            },
+        });
+
+        return { count, rows };
+    }
 }
 
 module.exports = RentalRepository;
