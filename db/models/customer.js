@@ -29,10 +29,6 @@ const Customer = sequelize.define('Customer', {
         allowNull: false,
         defaultValue: false,
     },
-    registerDate: {
-        type: DataTypes.DATE,
-        defaultValue: Date.now(),
-    },
 }, { tableName: 'tb_customer' });
 
 Customer.sync({alter: true});
