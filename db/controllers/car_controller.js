@@ -43,8 +43,6 @@ function verifyError(req, res) {
 
 exports.getAll = async (req, res, next) => {
     verifyError(req, res);
-    const uuid = req.headers['uuid'];
-    console.log(`UUID::: ${uuid}`);
 
     try {
         const cars = await repository.getAll();
@@ -59,13 +57,12 @@ exports.getByUuid = async (req, res, next) => {
     verifyError(req, res);
 
     const uuid = req.headers['uuid'];
-    console.log(`UUID::: ${uuid}`);
     if (uuid) {
         try {
             const foundCar = await repository.getByUuid(uuid);
 
             if (!foundCar) {
-                res.status(404).json({error: notFound});
+                res.status(404).json({ error: notFound });
                 return;
             }
             const jsonResponse = { message: getted, car: foundCar };
