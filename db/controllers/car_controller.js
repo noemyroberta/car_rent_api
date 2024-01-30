@@ -17,13 +17,13 @@ exports.insert = async (req, res, next) => {
     const uuid = uuidv4();
     if (brand && model && year && rentalRate) {
         try {
-            const newCar = await repository.insert(Car({
+            const newCar = await repository.insert({
                 uuid,
                 brand,
                 model,
                 year,
                 rentalRate,
-            }));
+            });
             const jsonResponse = { message: inserted, car: newCar };
             res.status(201).json(jsonResponse);
         } catch (error) {
