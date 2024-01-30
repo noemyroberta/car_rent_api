@@ -98,7 +98,7 @@ exports.getByCustomerUuid = async (req, res, next) => {
                 res.status(400).json({ error: 'Customer with the given uuid does not exist' });
                 return;
             } else if (!foundCustomer.rentedBefore) {
-                res.status(401).json({ error: 'Customer with the given does not have rents yet' });
+                res.status(401).json({ error: 'Customer with the given uuid does not have rents yet' });
                 return;
             }
 
