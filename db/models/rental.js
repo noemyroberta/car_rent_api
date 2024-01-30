@@ -27,7 +27,6 @@ const Rental = sequelize.define('Rental', {
         type: DataTypes.STRING,
         foreignKey: true,
         allowNull: false,
-        unique: true,
     },
     customerUuid: {
         type: DataTypes.STRING,
