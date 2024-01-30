@@ -11,6 +11,7 @@ const rentalRepo = new RentalRepository();
 const inserted = "Car rented successfully!";
 const getted = "Rental getted successfully!";
 const gettedAll = "Rentals getted successfully!";
+const handedOver = "Car handed over successfully!";
 const notFound = "Given rental uuid not found";
 
 exports.rent = async (req, res, next) => {
@@ -77,7 +78,7 @@ exports.getByUuid = async (req, res, next) => {
                 res.status(404).json({ error: notFound });
                 return;
             }
-            const jsonResponse = { message: getted, rent: foundCustomer };
+            const jsonResponse = { message: getted, rent: foundRent };
             res.status(200).json(jsonResponse);
         } catch (error) {
             return next(error);
@@ -103,6 +104,31 @@ exports.getByCustomerUuid = async (req, res, next) => {
 
             const { count, foundRents } = await rentalRepo.getAllByCustomerUuid(uuid);
             const jsonResponse = { message: gettedAll, rent: foundRents, count: count };
+            res.status(200).json(jsonResponse);
+        } catch (error) {
+            return next(error);
+        }
+    }
+}
+
+
+exports.handOver = async (req, res, next) => {
+    verifyError(req, res);
+
+    const uuid = req.params.uuid;
+    if (uuid) {
+        try {
+            const foundRent = await rentalRepo.getByUuid(uuid);
+
+            if (!foundRent) {
+                res.status(404).json({ error: notFound });
+                return;
+            }
+
+            await rentalRepo.handOver(uuid);
+            await carRepo.handOver(foundRent.carUuid);
+
+            const jsonResponse = { message: handedOver };
             res.status(200).json(jsonResponse);
         } catch (error) {
             return next(error);
