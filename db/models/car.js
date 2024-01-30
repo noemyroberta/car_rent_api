@@ -6,6 +6,7 @@ const Car = sequelize.define('Car', {
         type: DataTypes.STRING,
         primaryKey: true,
         allowNull: false,
+        unique: true,
     },
     brand: {
         type: DataTypes.STRING,

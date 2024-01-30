@@ -8,6 +8,7 @@ const Rental = sequelize.define('Rental', {
         type: DataTypes.STRING,
         primaryKey: true,
         allowNull: false,
+        unique: true,
     },
     startDate: {
         type: DataTypes.DATE,
