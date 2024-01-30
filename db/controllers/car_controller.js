@@ -32,15 +32,6 @@ exports.insert = async (req, res, next) => {
     }
 }
 
-function verifyError(req, res) {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-        res.status(422).json({ errors: errors.array() });
-        return;
-    }
-}
-
-
 exports.getAll = async (req, res, next) => {
     verifyError(req, res);
 
@@ -56,8 +47,7 @@ exports.getAll = async (req, res, next) => {
 exports.getByUuid = async (req, res, next) => {
     verifyError(req, res);
 
-    const uuid = req.headers['uuid'];
-
+    const uuid = req.params.uuid;
     if (uuid) {
         try {
             const foundCar = await repository.getByUuid(uuid);
@@ -71,5 +61,13 @@ exports.getByUuid = async (req, res, next) => {
         } catch (error) {
             return next(error);
         }
+    }
+}
+
+function verifyError(req, res) {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        res.status(422).json({ errors: errors.array() });
+        return;
     }
 }

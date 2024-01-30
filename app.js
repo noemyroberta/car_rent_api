@@ -7,7 +7,6 @@ const carRouter = require('./routes/car_router');
 const bodyParser = require('body-parser');
 
 app.use(bodyParser.json());
-
 app.use(serverUrl.SERVER, serverRouter);
 app.use(carUrl.BASE, carRouter);
 

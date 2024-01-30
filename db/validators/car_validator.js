@@ -1,4 +1,4 @@
-const { body, header } = require('express-validator');
+const { body, param } = require('express-validator');
 exports.validate = (method) => {
     switch (method) {
         case 'insertCar': {
@@ -11,7 +11,7 @@ exports.validate = (method) => {
         }
         case 'getCarByUuid': {
             return [
-                header('uuid', 'uuid is required').exists().if(header('uuid').exists()).isString(),
+                param('uuid', 'uuid is required').exists().if(param('uuid').exists()).isString(),
             ]
         }
         case 'getAll': {
