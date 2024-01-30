@@ -17,9 +17,9 @@ router.post(
 );
 
 router.put(
-    rentalUrl.RENT,
+    rentalUrl.HAND_OVER,
     RentalValidator.validate('handOverCar'),
-    RentalController.rent,
+    RentalController.handOver,
 );
 
 router.get(
