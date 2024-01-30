@@ -23,6 +23,17 @@ const Rental = sequelize.define('Rental', {
         allowNull: false,
         defaultValue: 0.0,
     },
+    car_uuid: {
+        type: DataTypes.STRING,
+        foreignKey: true,
+        allowNull: false,
+        unique: true,
+    },
+    customer_uuid: {
+        type: DataTypes.STRING,
+        foreignKey: true,
+        allowNull: false,
+    },
 
 }, { tableName: 'tb_rental' });
 
