@@ -15,7 +15,7 @@ exports.validate = (method) => {
             ]
         }
         case 'getAll': {
-
+            return []
         }
     }
 }
