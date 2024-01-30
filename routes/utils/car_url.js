@@ -2,9 +2,9 @@ const carUrl = {
     BASE : '/car',
     INSERT : '/',
     GET_ALL : '/',
-    GET_BY_ID : '/:id',
-    RENT : '/:id',
-    HAND_OVER : '/:id',
+    GET_BY_ID : '/',
+    RENT : '/',
+    HAND_OVER : '/',
 };
 
 module.exports = carUrl;
