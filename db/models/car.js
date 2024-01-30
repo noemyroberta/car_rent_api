@@ -3,7 +3,7 @@ const sequelize = require('../db_configuration');
 
 const Car = sequelize.define('Car', {
     uuid: {
-        type: DataTypes.STRING,
+        type: DataTypes.UUID,
         primaryKey: true,
         allowNull: false,
         unique: true,

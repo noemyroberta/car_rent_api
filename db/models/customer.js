@@ -3,7 +3,7 @@ const sequelize = require('../db_configuration');
 
 const Customer = sequelize.define('Customer', {
     uuid: {
-        type: DataTypes.STRING,
+        type: DataTypes.UUID,
         primaryKey: true,
         allowNull: false,
         unique: true,

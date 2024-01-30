@@ -5,7 +5,7 @@ const Customer = require('./customer');
 
 const Rental = sequelize.define('Rental', {
     uuid: {
-        type: DataTypes.STRING,
+        type: DataTypes.UUID,
         primaryKey: true,
         allowNull: false,
         unique: true,
@@ -25,20 +25,28 @@ const Rental = sequelize.define('Rental', {
         defaultValue: 0.0,
     },
     carUuid: {
-        type: DataTypes.STRING,
+        type: DataTypes.UUID,
         foreignKey: true,
         allowNull: false,
+        references: {
+            model: Car,
+            key: 'uuid'
+        }
     },
     customerUuid: {
-        type: DataTypes.STRING,
+        type: DataTypes.UUID,
         foreignKey: true,
         allowNull: false,
+        references: {
+            model: Customer,
+            key: 'uuid'
+        }
     },
 
 }, { tableName: 'tb_rental' });
 
-Rental.belongsTo(Car, { through: carUuid });
-Rental.belongsTo(Customer, { through: customerUuid });
+Car.belongsToMany(Customer, { through: Rental });
+Customer.belongsToMany(Car, { through: Rental });
 
 Rental.sync({ alter: true });
 module.exports = Rental;
