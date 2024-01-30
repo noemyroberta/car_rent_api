@@ -5,6 +5,12 @@ class CustomerRepository {
         return await Customer.create(customer);
     }
 
+    async updateRentedBefore(uuid) {
+        const customer = this.getByUuid(uuid);
+        customer.rentedBefore = true;
+        await customer.save();
+    }
+
     async getAll() {
         return await Customer.findAll();
     }
