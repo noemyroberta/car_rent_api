@@ -103,7 +103,7 @@ exports.getByCustomerUuid = async (req, res, next) => {
             }
 
             const { count, foundRents } = await rentalRepo.getAllByCustomerUuid(customerUuid);
-            const jsonResponse = { message: gettedAll, rent: foundRents, count: count };
+            const jsonResponse = { message: gettedAll, rents: foundRents, count: count };
             res.status(200).json(jsonResponse);
         } catch (error) {
             return next(error);
