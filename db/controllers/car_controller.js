@@ -43,7 +43,7 @@ function verifyError(req, res) {
 exports.getByUuid = async (req, res, next) => {
     verifyError(req, res);
 
-    const { uuid } = req.body;
+    const uuid = req.headers['uuid'];
     if (uuid) {
         try {
             const foundCar = await repository.getByUuid(uuid);
