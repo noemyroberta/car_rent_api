@@ -11,8 +11,11 @@ exports.validate = (method) => {
         }
         case 'getCarByUuid': {
             return [
-                header('uuid', 'uuid is required').exists().if(body('uuid').exists()).isString(),
+                header('uuid', 'uuid is required').exists().if(header('uuid').exists()).isString(),
             ]
+        }
+        case 'getAll': {
+
         }
     }
 }

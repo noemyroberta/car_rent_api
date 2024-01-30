@@ -7,6 +7,7 @@ const repository = new CarRepository();
 
 const inserted = { message: "Car created successfully!" };
 const getted = { message: "Car getted successfully!" };
+const gettedAll = { message: "Cars getted successfully!" };
 const notFound = { error: "Given car uuid not found" };
 
 exports.insert = async (req, res, next) => {
@@ -40,17 +41,31 @@ function verifyError(req, res) {
 }
 
 
+exports.getAll = async (_, res, __) => {
+    const uuid = req.headers['uuid'];
+    console.log(`UUID::: ${uuid}`);
+
+    try {
+        const cars = await repository.getAll();
+        const jsonResponse = { gettedAll, cars: cars };
+        res.status(200).json(jsonResponse);
+    } catch (error) {
+        return next(error);
+    }
+}
+
 exports.getByUuid = async (req, res, next) => {
     verifyError(req, res);
 
     const uuid = req.headers['uuid'];
+    console.log(`UUID::: ${uuid}`);
     if (uuid) {
         try {
             const foundCar = await repository.getByUuid(uuid);
 
             if (!foundCar) {
                 res.status(404).json(notFound);
-                return;    
+                return;
             }
             const jsonResponse = { getted, car: foundCar };
             res.status(200).json(jsonResponse);
