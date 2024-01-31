@@ -14,9 +14,12 @@ class CarRepository {
     }
 
     async rent(uuid) {
-        const car = this.getByUuid(uuid);
-        car.available = false;
-        await car.save();
+        const [_, [updatedCar]] = await Car.update(
+            { available: false },
+            { where: uuid, returning: true }
+        );
+
+        return updatedCar;
     }
 
     async handOver(uuid) {
