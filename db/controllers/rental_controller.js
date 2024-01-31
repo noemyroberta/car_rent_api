@@ -38,10 +38,11 @@ exports.rent = async (req, res, next) => {
             await carRepo.rent(carUuid);
             await customerRepo.updateRentedBefore(customerUuid);
 
+            const totalRent = _calculateRentAmount(endDate, rentAmount);
             const newRental = await rentalRepo.insert({
                 uuid,
                 endDate,
-                rentAmount,
+                totalRent,
                 carUuid,
                 customerUuid,
             });
@@ -52,6 +53,14 @@ exports.rent = async (req, res, next) => {
             return next(error);
         }
     }
+}
+
+async function _calculateRentAmount(endDate, rentAmount) {
+    const currentDate = new Date();
+    const currentDateOnly = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate());
+
+    const days = endDate - currentDateOnly;
+    return rentAmount * days;
 }
 
 exports.getAll = async (req, res, next) => {
