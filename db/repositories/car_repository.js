@@ -26,9 +26,7 @@ class CarRepository {
     }
 
     async handOver(uuid) {
-        const car = this.getByUuid(uuid);
-        car.available = true;
-        await car.save();
+        return _updateIsAvailable(false, uuid);
     }
 }
 
