@@ -19,7 +19,7 @@ class CarRepository {
 
     async _updateIsAvailable(availability, uuid) {
         const [_, [updatedCar]] = await Car.update(
-            { available: availability },
+            { isAvailable: availability },
             { where: uuid, returning: true }
         );
         return updatedCar;
