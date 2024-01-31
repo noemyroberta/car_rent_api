@@ -14,11 +14,14 @@ class CarRepository {
     }
 
     async rent(uuid) {
+        return _updateIsAvailable(true, uuid);
+    }
+
+    async _updateIsAvailable(availability, uuid) {
         const [_, [updatedCar]] = await Car.update(
-            { available: false },
+            { available: availability },
             { where: uuid, returning: true }
         );
-
         return updatedCar;
     }
 
