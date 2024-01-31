@@ -57,7 +57,11 @@ exports.rent = async (req, res, next) => {
 
 async function _calculateRentAmount(endDate, rentAmount) {
     const currentDate = new Date();
-    const currentDateOnly = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate());
+    const currentDateOnly = new Date(
+        currentDate.getFullYear(),
+        currentDate.getMonth(),
+        currentDate.getDate()
+    );
 
     const days = endDate - currentDateOnly;
     return rentAmount * days;
