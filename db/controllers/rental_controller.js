@@ -17,10 +17,10 @@ const notFound = "Given rental uuid not found";
 exports.rent = async (req, res, next) => {
     verifyError(req, res);
 
-    const { endDate, rentAmount, carUuid, customerUuid } = req.body;
+    const { endDate, carUuid, customerUuid } = req.body;
     const uuid = uuidv4();
 
-    if (endDate && rentAmount && carUuid && customerUuid) {
+    if (endDate && carUuid && customerUuid) {
         try {
             const customer = await customerRepo.getByUuid(customerUuid);
             const car = await carRepo.getByUuid(carUuid);
@@ -38,11 +38,11 @@ exports.rent = async (req, res, next) => {
             await carRepo.rent(carUuid);
             await customerRepo.updateRentedBefore(customerUuid);
 
-            const totalRent = _calculateRentAmount(endDate, rentAmount);
+            const rentAmount = _calculateRentAmount(endDate, car.rentalRate);
             const newRental = await rentalRepo.insert({
                 uuid,
                 endDate,
-                totalRent,
+                rentAmount,
                 carUuid,
                 customerUuid,
             });
@@ -55,7 +55,7 @@ exports.rent = async (req, res, next) => {
     }
 }
 
-async function _calculateRentAmount(endDate, rentAmount) {
+async function _calculateRentAmount(endDate, rentalRate) {
     const currentDate = new Date();
     const currentDateOnly = new Date(
         currentDate.getFullYear(),
@@ -64,7 +64,7 @@ async function _calculateRentAmount(endDate, rentAmount) {
     );
 
     const days = endDate - currentDateOnly;
-    return rentAmount * days;
+    return rentalRate * days;
 }
 
 exports.getAll = async (req, res, next) => {
