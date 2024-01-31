@@ -1,7 +1,7 @@
 const { DataTypes } = require('sequelize');
-const sequelize = require('../db_configuration');
 const Car = require('./car');
 const Customer = require('./customer');
+const sequelize = require('../db_configuration');
 
 const Rental = sequelize.define('Rental', {
     uuid: {
@@ -11,12 +11,12 @@ const Rental = sequelize.define('Rental', {
         unique: true,
     },
     startDate: {
-        type: DataTypes.DATE,
+        type: DataTypes.DATEONLY,
         allowNull: false,
-        defaultValue: Date.now(),
+        defaultValue: DataTypes.NOW,
     },
     endDate: {
-        type: DataTypes.DATE,
+        type: DataTypes.DATEONLY,
         allowNull: false,
     },
     rentAmount: {
@@ -26,27 +26,27 @@ const Rental = sequelize.define('Rental', {
     },
     carUuid: {
         type: DataTypes.UUID,
-        foreignKey: true,
         allowNull: false,
         references: {
             model: Car,
-            key: 'uuid'
-        }
+            key: 'uuid',
+        },
+        index: true,
     },
     customerUuid: {
         type: DataTypes.UUID,
-        foreignKey: true,
         allowNull: false,
         references: {
             model: Customer,
-            key: 'uuid'
-        }
+            key: 'uuid',
+        },
+        index: true,
     },
 
 }, { tableName: 'tb_rental' });
 
-Car.belongsToMany(Customer, { through: Rental });
-Customer.belongsToMany(Car, { through: Rental });
+Rental.belongsTo(Car, { foreignKey: 'carUuid' });
+Rental.belongsTo(Customer, { foreignKey: 'customerUuid' });
 
-Rental.sync({ alter: true });
+Rental.sync({ force: true });
 module.exports = Rental;

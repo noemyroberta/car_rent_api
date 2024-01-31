@@ -4,7 +4,7 @@ exports.validate = (method) => {
 
         case 'rentCar': {
             return [
-                body('endDate', 'endDate is required').exists().if(body('endDate').exists()).isDate(),
+                body('endDate', 'endDate is required').exists(),
                 body('carUuid', 'carUuid is required').exists().if(body('carUuid').exists()).isString(),
                 body('customerUuid', 'customerUuid is required').exists().if(body('customerUuid').exists()).isString(),
             ]
