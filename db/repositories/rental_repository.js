@@ -2,7 +2,6 @@ const Rental = require('../models/rental');
 
 class RentalRepository {
     async insert(rental) {
-        console.log(`RENTTTTTT => ${rental}`);
         return await Rental.create(rental);
     }
 
