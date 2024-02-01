@@ -99,6 +99,7 @@ exports.getAllByParam = async (req, res, next) => {
     const filterType = req.params.filter;
     const filterValue = req.query.value;
 
+    console.log(filterType);
     let query;
     switch (filterType) {
         case 'customerUuid':
@@ -138,7 +139,7 @@ async function getByUuid(req, res, query) {
 async function getAllByCustomerUuid(req, res, query) {
     verifyError(req, res);
 
-    const customerUuid = query;
+    const customerUuid = query['customerUuid'];
     if (customerUuid) {
         try {
             const foundCustomer = await customerRepo.getByUuid(customerUuid);
