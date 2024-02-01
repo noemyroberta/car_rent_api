@@ -14,14 +14,9 @@ exports.validate = (method) => {
                 param('uuid', 'uuid is required').exists(),
             ]
         }
-        case 'getAllByCustomerUuid': {
+        case 'getAllByParam': {
             return [
-                param('customerUuid', 'customerUuid is required').exists(),
-            ]
-        }
-        case 'getRentalByUuid': {
-            return [
-                param('uuid', 'uuid is required').exists(),
+
             ]
         }
         case 'getAll': {
