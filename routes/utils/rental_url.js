@@ -3,8 +3,7 @@ const rentalUrl = {
     GET_ALL : '/',
     RENT : '/',
     HAND_OVER : '/:uuid',
-    GET_BY_UUID : '/:uuid',
-    GET_ALL_BY_CUSTOMER_UUID : '/:customerUuid',
+    GET_BY_PARAM: '/:param',
 };
 
 module.exports = rentalUrl;

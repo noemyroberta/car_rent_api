@@ -11,6 +11,7 @@ const rentalRepo = new RentalRepository();
 const inserted = "Car rented successfully!";
 const getted = "Rental getted successfully!";
 const gettedAll = "Rentals getted successfully!";
+const gettedAllByCustomer = "Rentals by customer getted successfully!";
 const handedOver = "Car handed over successfully!";
 const notFound = "Given rental uuid not found";
 
@@ -64,7 +65,7 @@ exports.rent = async (req, res, next) => {
 
 function _parseDate(str) {
     var mdy = str.split('-');
-    return new Date(mdy[0], mdy[1]-1, mdy[2]);
+    return new Date(mdy[0], mdy[1] - 1, mdy[2]);
 }
 
 function _getCurrentDateOnly() {
@@ -94,11 +95,30 @@ exports.getAll = async (req, res, next) => {
     }
 }
 
-exports.getByUuid = async (req, res, next) => {
-    
+exports.getAllByParam = async (req, res, next) => {
+    const filterType = req.params.filter;
+    const filterValue = req.query.value;
+
+    let query;
+    switch (filterType) {
+        case 'customerUuid':
+            query = { customerUuid: filterValue };
+            getAllByCustomerUuid(req, res, query);
+            break;
+        case 'uuid':
+            query = { uuid: filterValue };
+            getByUuid(req, res, query);
+            break;
+
+        default:
+            return res.status(400).json({ error: 'Invalid filter type' });
+    }
+}
+
+async function getByUuid(req, res, query) {
     verifyError(req, res);
 
-    const uuid = req.params.uuid;
+    const uuid = query['uuid'];
     if (uuid) {
         try {
             const foundRent = await rentalRepo.getByUuid(uuid);
@@ -115,10 +135,10 @@ exports.getByUuid = async (req, res, next) => {
     }
 }
 
-exports.getAllByCustomerUuid = async (req, res, next) => {
+async function getAllByCustomerUuid(req, res, query) {
     verifyError(req, res);
 
-    const customerUuid = req.params.customerUuid;
+    const customerUuid = query;
     if (customerUuid) {
         try {
             const foundCustomer = await customerRepo.getByUuid(customerUuid);
@@ -132,7 +152,7 @@ exports.getAllByCustomerUuid = async (req, res, next) => {
             }
 
             const { count, foundRents } = await rentalRepo.getAllByCustomerUuid(customerUuid);
-            const jsonResponse = { message: gettedAll, rents: foundRents, count: count };
+            const jsonResponse = { message: gettedAllByCustomer, rents: foundRents, count: count };
             res.status(200).json(jsonResponse);
         } catch (error) {
             return next(error);

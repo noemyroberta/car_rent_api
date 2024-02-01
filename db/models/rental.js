@@ -48,5 +48,5 @@ const Rental = sequelize.define('Rental', {
 Rental.belongsTo(Car, { foreignKey: 'carUuid' });
 Rental.belongsTo(Customer, { foreignKey: 'customerUuid' });
 
-Rental.sync({ force: true });
+Rental.sync({ alter: true });
 module.exports = Rental;

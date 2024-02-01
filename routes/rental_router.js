@@ -23,15 +23,9 @@ router.put(
 );
 
 router.get(
-    rentalUrl.GET_BY_UUID,
-    RentalValidator.validate('getRentalByUuid'),
-    RentalController.getByUuid,
-);
-
-router.get(
-    rentalUrl.GET_ALL_BY_CUSTOMER_UUID,
-    RentalValidator.validate('getAllByCustomerUuid'),
-    RentalController.getAllByCustomerUuid,
+    rentalUrl.GET_BY_PARAM,
+    RentalValidator.validate('getAllByParam'),
+    RentalController.getAllByParam,
 );
 
 module.exports = router;
