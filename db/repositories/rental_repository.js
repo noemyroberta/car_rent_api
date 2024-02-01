@@ -17,12 +17,10 @@ class RentalRepository {
     async getAllByCustomerUuid(customerUuid) {
         const { count, rows } = await Rental.findAndCountAll({
             where: {
-                customerUuid: {
-                    [Op.like]: `${customerUuid}`
-                }
+                customerUuid: customerUuid,
             },
         });
-
+        console.log(`${count} `, `${rows} `);
         return { count, rows };
     }
 }
