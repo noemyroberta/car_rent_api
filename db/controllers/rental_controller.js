@@ -27,12 +27,15 @@ exports.rent = async (req, res, next) => {
 
             if (!customer) {
                 res.status(400).json({ error: "Customer with the given uuid does not exist" });
+                return;
             }
 
             if (!car) {
                 res.status(400).json({ error: "Car with the given uuid does not exist" });
+                return;
             } else if (!car.isAvailable) {
                 res.status(401).json({ error: "Car with the given uuid is already rented" });
+                return;
             }
 
             await carRepo.rent(carUuid);
