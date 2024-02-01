@@ -14,20 +14,21 @@ class CarRepository {
     }
 
     async rent(uuid) {
-        return _updateIsAvailable(true, uuid);
-    }
-
-    async _updateIsAvailable(availability, uuid) {
-        const [_, [updatedCar]] = await Car.update(
-            { isAvailable: availability },
-            { where: uuid, returning: true }
-        );
-        return updatedCar;
+        await Car.update(
+            { isAvailable: true },
+            {
+                where: { uuid: uuid }
+            });
     }
 
     async handOver(uuid) {
-        return _updateIsAvailable(false, uuid);
+        await Car.update(
+            { isAvailable: false },
+            {
+                where: { uuid: uuid }
+            });
     }
 }
+
 
 module.exports = CarRepository;

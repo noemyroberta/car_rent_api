@@ -6,9 +6,11 @@ class CustomerRepository {
     }
 
     async updateRentedBefore(uuid) {
-        const customer = this.getByUuid(uuid);
-        customer.rentedBefore = true;
-        await customer.save();
+        await Customer.update(
+            { rentedBefore: true },
+            {
+                where: { uuid: uuid }
+            });
     }
 
     async getAll() {

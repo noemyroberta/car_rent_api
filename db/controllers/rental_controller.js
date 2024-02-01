@@ -38,10 +38,15 @@ exports.rent = async (req, res, next) => {
             await carRepo.rent(carUuid);
             await customerRepo.updateRentedBefore(customerUuid);
 
-            const rentAmount = _calculateRentAmount(endDate, car.rentalRate);
+            const end = _parseDate(endDate);
+            const today = _getCurrentDateOnly();
+            const rentAmount = _calculateRentAmount(today, end, car.rentalRate);
+
+            console.log(`RENT AMOUT => ${rentAmount.toString}`);
             const newRental = await rentalRepo.insert({
                 uuid,
-                endDate,
+                today,
+                end,
                 rentAmount,
                 carUuid,
                 customerUuid,
@@ -55,15 +60,24 @@ exports.rent = async (req, res, next) => {
     }
 }
 
-async function _calculateRentAmount(endDate, rentalRate) {
+function _parseDate(str) {
+    var mdy = str.split('-');
+    return new Date(mdy[0], mdy[1]-1, mdy[2]);
+}
+
+function _getCurrentDateOnly() {
     const currentDate = new Date();
     const currentDateOnly = new Date(
         currentDate.getFullYear(),
         currentDate.getMonth(),
         currentDate.getDate()
     );
+    return currentDateOnly;
+}
 
-    const days = endDate - currentDateOnly;
+function _calculateRentAmount(startDate, endDate, rentalRate) {
+    const days = Math.round((endDate - startDate) / (1000 * 60 * 60 * 24));
+    console.log(`days days => ${days.toString}`);
     return rentalRate * days;
 }
 
@@ -80,6 +94,7 @@ exports.getAll = async (req, res, next) => {
 }
 
 exports.getByUuid = async (req, res, next) => {
+    
     verifyError(req, res);
 
     const uuid = req.params.uuid;
