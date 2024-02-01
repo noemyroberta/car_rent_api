@@ -15,7 +15,7 @@ class CarRepository {
 
     async rent(uuid) {
         await Car.update(
-            { isAvailable: true },
+            { isAvailable: false },
             {
                 where: { uuid: uuid }
             });
@@ -23,7 +23,7 @@ class CarRepository {
 
     async handOver(uuid) {
         await Car.update(
-            { isAvailable: false },
+            { isAvailable: true },
             {
                 where: { uuid: uuid }
             });
