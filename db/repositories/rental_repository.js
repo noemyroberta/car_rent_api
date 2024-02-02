@@ -13,13 +13,21 @@ class RentalRepository {
         return await Rental.findByPk(uuid);
     }
 
+    async handOver(uuid) {
+        return await Rental.update(
+            { rentPayed: true },
+            {
+                where: { uuid: uuid }
+            });
+    }
+
     async getAllByCustomerUuid(customerUuid) {
         const result = await Rental.findAndCountAll({
             where: {
                 customerUuid: customerUuid,
             },
         });
-        
+
         return result;
     }
 }
