@@ -14,13 +14,13 @@ class RentalRepository {
     }
 
     async getAllByCustomerUuid(customerUuid) {
-        const { count, rows } = await Rental.findAndCountAll({
+        const result = await Rental.findAndCountAll({
             where: {
                 customerUuid: customerUuid,
             },
         });
-        console.log(`${count} `, `${rows} `);
-        return { count, rows };
+        
+        return result;
     }
 }
 

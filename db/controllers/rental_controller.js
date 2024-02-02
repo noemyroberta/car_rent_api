@@ -152,8 +152,8 @@ async function getAllByCustomerUuid(req, res, query) {
                 return;
             }
 
-            const { count, foundRents } = await rentalRepo.getAllByCustomerUuid(customerUuid);
-            const jsonResponse = { message: gettedAllByCustomer, rents: foundRents, count: count };
+            const result = await rentalRepo.getAllByCustomerUuid(customerUuid);
+            const jsonResponse = { message: gettedAllByCustomer, rents: result.rows, count: result.count };
             res.status(200).json(jsonResponse);
         } catch (error) {
             return next(error);
