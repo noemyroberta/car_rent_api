@@ -42,6 +42,11 @@ const Rental = sequelize.define('Rental', {
         },
         index: true,
     },
+    rentPayed : {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+        defaultValue: false,
+    }
 
 }, { tableName: 'tb_rental' });
 
