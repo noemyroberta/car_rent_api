@@ -1,0 +1,6 @@
+Dockerfile
+todo.json
+todo.txt
+.gitignore
+.env
+node_modules
