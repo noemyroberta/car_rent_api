@@ -124,6 +124,3 @@ for (const data of insertionData) {
     const values = [uuid, data.brand, data.model, data.year, data.rentalRate];
     db.query(sql, values);
 }
-
-
-

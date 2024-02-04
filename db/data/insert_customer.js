@@ -104,4 +104,3 @@ for (const data in insertionData) {
     const values = [uuid, data.firstName, data.lastName, data.email];
     db.query(sql, values);
 }
-
