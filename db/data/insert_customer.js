@@ -98,9 +98,19 @@ const insertionData = [
     }
 ];
 
-for (const data in insertionData) {
-    const uuid = uuidv4();
-    const sql = 'INSERT INTO tb_customer(uuid, firstName, lastName, email) VALUES(?, ?, ?, ?)';
-    const values = [uuid, data.firstName, data.lastName, data.email];
-    db.query(sql, values);
+async function insertData() {
+    for (const data of insertionData) {
+        const uuid = uuidv4();
+        const sql = 'INSERT INTO tb_customer(uuid, firstName, lastName, email, createdAt, updatedAt) VALUES(?, ?, ?, ?, ?, ?)';
+        const values = [uuid, data.firstName, data.lastName, data.email, Date.now(), Date.now()];
+        try {
+            await db.query(sql, { replacements: values, type: db.QueryTypes.INSERT });
+            console.log(`Record inserted with UUID: ${uuid}`);
+        } catch (error) {
+            console.error(`Error inserting record with UUID ${uuid}:`, error);
+        }
+    }
+    db.close();
 }
+
+insertData();

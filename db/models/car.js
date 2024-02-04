@@ -4,6 +4,7 @@ const sequelize = require('../db_configuration');
 const Car = sequelize.define('Car', {
     uuid: {
         type: DataTypes.UUID,
+        defaultValue: DataTypes.UUIDV4,
         primaryKey: true,
         allowNull: false,
     },

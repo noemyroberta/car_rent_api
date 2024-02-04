@@ -5,9 +5,6 @@ const server = http.createServer(app);
 const PORT = process.env.PORT || 3000;
 const HOST = 'localhost';
 
-require('./data/insert_customer');
-require('./data/insert_car');
-
 try {
     db.authenticate();
     console.log('Connection has been established successfully.');

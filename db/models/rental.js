@@ -6,6 +6,7 @@ const sequelize = require('../db_configuration');
 const Rental = sequelize.define('Rental', {
     uuid: {
         type: DataTypes.UUID,
+        defaultValue: DataTypes.UUIDV4,
         primaryKey: true,
         allowNull: false,
         unique: true,

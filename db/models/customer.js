@@ -4,6 +4,7 @@ const sequelize = require('../db_configuration');
 const Customer = sequelize.define('Customer', {
     uuid: {
         type: DataTypes.UUID,
+        defaultValue: DataTypes.UUIDV4,
         primaryKey: true,
         allowNull: false,
     },
