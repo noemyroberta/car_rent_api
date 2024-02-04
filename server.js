@@ -2,9 +2,11 @@ const http = require('http');
 const app = require('./app');
 const db = require('./db/db_configuration');
 const server = http.createServer(app);
-
 const PORT = process.env.PORT || 3000;
 const HOST = 'localhost';
+
+require('./data/insert_customer');
+require('./data/insert_car');
 
 try {
     db.authenticate();
