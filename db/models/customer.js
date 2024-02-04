@@ -29,7 +29,10 @@ const Customer = sequelize.define('Customer', {
         allowNull: false,
         defaultValue: false,
     },
-}, { tableName: 'tb_customer' });
+}, {
+    tableName: 'tb_customer',
+    timestamps: false,
+});
 
-Customer.sync({force: true});
+Customer.sync({ force: true });
 module.exports = Customer;

@@ -122,8 +122,8 @@ const insertionData = [
 async function insertData() {
     for (const data of insertionData) {
         const uuid = uuidv4();
-        const sql = 'INSERT INTO tb_car (uuid, brand, model, year, rentalRate, createdAt, updatedAt) VALUES (?, ?, ?, ?, ?, ?, ?)';
-        const values = [uuid, data.brand, data.model, data.year, data.rentalRate, Date.now(), Date.now()];
+        const sql = 'INSERT INTO tb_car (uuid, brand, model, year, rentalRate) VALUES (?, ?, ?, ?, ?)';
+        const values = [uuid, data.brand, data.model, data.year, data.rentalRate];
         try {
             await db.query(sql, { replacements: values, type: db.QueryTypes.INSERT });
             console.log(`Record inserted with UUID: ${uuid}`);

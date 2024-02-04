@@ -29,7 +29,10 @@ const Car = sequelize.define('Car', {
         allowNull: false,
         defaultValue: true,
     },
-}, { tableName: 'tb_car' });
+}, {
+    tableName: 'tb_car',
+    timestamps: false,
+});
 
-Car.sync({force: true});
+Car.sync({ force: true });
 module.exports = Car;

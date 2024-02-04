@@ -49,7 +49,7 @@ const Rental = sequelize.define('Rental', {
         defaultValue: false,
     }
 
-}, { tableName: 'tb_rental' });
+}, { tableName: 'tb_rental'});
 
 Rental.belongsTo(Car, { foreignKey: 'carUuid' });
 Rental.belongsTo(Customer, { foreignKey: 'customerUuid' });
