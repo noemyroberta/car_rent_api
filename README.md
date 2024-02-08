@@ -35,9 +35,9 @@ You'll install all of the following deps:
 "uuid": "^9.0.1"
 ```
 
-#### 3. Run the SQL inserts
+#### 4. Run the SQL inserts
 
-To have some data registered on database, you need to run this commands. 
+To have some data registered on database, you need to run this commands.
 
 `node db/data/insert_car.js`
 
